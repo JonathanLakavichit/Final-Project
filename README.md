@@ -81,7 +81,59 @@ rect( xPos+(Heightbitmoji/150*154), yPos+(Heightbitmoji/150*201), Heightbitmoji/
 arc( xPos+(Heightbitmoji/150*147), yPos+(Heightbitmoji/150*259), Heightbitmoji/150*113, Heightbitmoji/150*117, 187, 283);
 arc( xPos+(Heightbitmoji/150*240), yPos+(Heightbitmoji/150*269), Heightbitmoji/150*137, Heightbitmoji/150*137, -95, -3);
 };
+// Lj's Bitmoji
+var drawHead = function(x,y,bitH){
 
+noStroke();
+fill(241, 194, 125); // skintone fill
+ellipse(x + bitH/100,y + bitH/100,bitH/100*79,bitH/100*100); //head
+fill(255, 255, 255); // white fill
+arc(x- bitH/100*42,y+bitH/100*37,bitH/100*36,bitH/100*60,0,360); //left chisel
+fill(255, 255, 255); // white fill
+arc(x+bitH/100*40,y+bitH/100*37,bitH/100*36,bitH/100*60,0,360); //right chisel
+fill(36,28,17); //brown hair fill
+quad(x-bitH/100*44,y+bitH/100*6, x-bitH/100*29, y-bitH/100*35, x-bitH/100*10, y-bitH/100*50, x-bitH/100*24, y-bitH/100*28); // leftside hair
+fill(36, 28, 17); // brown hair fill
+quad(x+bitH/100*40,y+bitH/100*8, x+bitH/100*35, y-bitH/100*25, x+bitH/100*13, y-bitH/100*50,x+bitH/100*35, y-bitH/100*10); // rightside hair
+fill(36, 28, 17); // brown hair fill
+ellipse(x + bitH/100, y-bitH/100*42,bitH/100*48,bitH/100*15); // top hair
+fill(99,57,15); // hazel eye fill
+ellipse(x-bitH/100*11,y-bitH/100*8,bitH/100*7,bitH/100*7); // left eye
+fill(99,57,15); // hazel eye fill
+ellipse(x+bitH/100*15,y-bitH/100*6,bitH/100*7,bitH/100*7); // right eye
+stroke(10, 10, 10);
+fill (0,0,0);//glasses
+rect (x-bitH/100*14, y-bitH/100*11, bitH/100*7, bitH/100*9) ; // left lens
+rect (x+bitH/100*11, y-bitH/100*11, bitH/100*7,bitH/100*9) ; // right lens
+fill (4, 0, 250); // glasses color
+rect (x+bitH/100*13,y-bitH/100*10, bitH/100*-20,bitH/100*4) ; //center of glasses
+rect(x+bitH/100*37,y-bitH/100*8,bitH/100*-19,bitH/100*3,bitH/100*-6);// right wing for glasses
+rect(x-bitH/100*15,y-bitH/100*9,bitH/100*-19,bitH/100*3,bitH/100*6); //left wing for glasses
+fill(241,194,125); // skintone fill for nose
+bezier(x+bitH/100,y-bitH/100*9,x+bitH/100*20,y+bitH/100*21,x-bitH/100*9,y+bitH/100*19,x-bitH/100*3,y+bitH/100*16); //nose
+fill(255,255,255); // white fill for mouth
+arc(x+bitH/100*3,y+bitH/100*25,bitH/100*30,bitH/100*13,1,180); //mouth
+line(x-bitH/100*14,y+bitH/100*24,x+bitH/100*19,y+bitH/100*24); // top lip
+};
+var drawBody = function(x,y,bitH){
+noStroke();
+fill(240, 26, 26);
+rect(x-bitH/100*50,y+bitH/100*46,bitH/100*100,bitH/100*100); //shirt
+stroke(20, 17, 17);
+arc(x+bitH/100*49,y+bitH/100*69,bitH/100*28,bitH/100*43,0,374); //left chisel
+arc(x-bitH/100*45,y+bitH/100*69,bitH/100*28,bitH/100*43,0,374); //right chisel
+noStroke();
+fill(255,255,255);
+rect(x+bitH/100*37,y+bitH/100*91,bitH/100*48,bitH/100*75);
+rect(x-bitH/100*80,y+bitH/100*91,bitH/100*48,bitH/100*75);
+fill(20, 18, 18);
+text("LJ",x-bitH/100*10,y+bitH/100*65,bitH/100*130,bitH/100*50);
+};
+var drawBit = function(x,y,bitH){
+   
+    drawHead(x,y,bitH);
+     drawBody(x,y,bitH);
+};
 // Main menu
 var GameMenu = function() {
     stillPlaying = false;
