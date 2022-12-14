@@ -26,10 +26,12 @@ Button.prototype.isMouseInside = function() {
 
 // makes start button
 var button1 = new Button({
-    x: 141,
+    x: 132,
     y: 283,
     label: "Start"
 });
+
+//Jonathan's Bitmoji
 var yPos = 100;//yPos+ or yPos-
 var xPos = 100;//xPos+ or XPos-
 var Heightbitmoji = 150;// (Heightbitmoji/150* )
@@ -81,6 +83,37 @@ rect( xPos+(Heightbitmoji/150*154), yPos+(Heightbitmoji/150*201), Heightbitmoji/
 arc( xPos+(Heightbitmoji/150*147), yPos+(Heightbitmoji/150*259), Heightbitmoji/150*113, Heightbitmoji/150*117, 187, 283);
 arc( xPos+(Heightbitmoji/150*240), yPos+(Heightbitmoji/150*269), Heightbitmoji/150*137, Heightbitmoji/150*137, -95, -3);
 };
+
+//Duck Model
+var xPosition = 100;
+var yPosition = 100;
+var HeightDuck = 150;
+
+var FlappyDuck = function(xPosition, yPosition, HeightDuck){
+    
+//Duck Head   
+noStroke();
+fill(255, 234, 0);
+ellipse(xPosition+(HeightDuck/125*200), yPosition+(HeightDuck/296*149), HeightDuck/133*92, HeightDuck/150*107);
+
+//Duck Face(Eyes and Beak)
+stroke(0, 0, 0);
+fill(255, 255, 255);
+ellipse(xPosition+(HeightDuck/122*200), yPosition+(HeightDuck/373*149), HeightDuck/541*92, HeightDuck/601*107);
+fill(0, 0, 0);
+ellipse(xPosition+(HeightDuck/122*200), yPosition+(HeightDuck/370*149), HeightDuck/785*92, HeightDuck/876*107);
+noStroke();
+fill(255, 132, 0);
+rect(xPosition+(HeightDuck/110*200), yPosition+(HeightDuck/303*149), HeightDuck/341*92, HeightDuck/852*107);
+
+//Duck Body 
+noStroke();
+fill(255, 234, 0);
+ellipse(xPosition+(HeightDuck/150*200), yPosition+(HeightDuck/153*149), HeightDuck/89*92, HeightDuck/150*107);
+stroke(0, 0, 0);
+ellipse(xPosition+(HeightDuck/142*193), yPosition+(HeightDuck/160*149), HeightDuck/145*95, HeightDuck/297*107);
+};
+
 // Lj's Bitmoji
 var drawHead = function(x,y,bitH){
 
@@ -130,7 +163,6 @@ fill(20, 18, 18);
 text("LJ",x-bitH/100*10,y+bitH/100*65,bitH/100*130,bitH/100*50);
 };
 var drawBit = function(x,y,bitH){
-   
     drawHead(x,y,bitH);
      drawBody(x,y,bitH);
 };
@@ -140,15 +172,16 @@ var GameMenu = function() {
     background(197, 212, 36);
     fill(247, 30, 48);
     textSize(28);
-    text("Flappy Duck",101,50);//text
-    textSize(20);
-    text("Press Start to play the game. ", 71,82,305,263);
+    text("Flappy Duck",111,50);//text
+    textSize(23);
+    text("Press Start ", 125,86,295,263);
     textSize(20);
     text("Jonathan Lakavichit",195,380);//Jon's Name
-    text("Lj Tirado", 81, 376);// Lj's Name
+    text("Lj Tirado", 38, 379);// Lj's Name
     button1.draw();
     drawBitmoji(232, 207, 69);
+    FlappyDuck(18,106,127);
+    drawBit(67,246,62);
 };
-
 
 GameMenu();
