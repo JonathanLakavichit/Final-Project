@@ -1,4 +1,88 @@
 # Final-Project
+//Flappy Duck Variables
+var score = 0;
+var highscore = 0;
+var begin_time = millis();
+var last_tube = begin_time;
+var x = 150;
+var tubes = [];
+var x =-150;
+var speed = 10;
+var FlappyDuck = function(xPosition, yPosition, HeightDuck){
+    
+//Duck Head   
+noStroke();
+fill(255, 234, 0);
+ellipse(xPosition+(HeightDuck/125*200), yPosition+(HeightDuck/296*149), HeightDuck/133*92, HeightDuck/150*107);
+
+//Duck Face(Eyes and Beak)
+stroke(0, 0, 0);
+fill(255, 255, 255);
+ellipse(xPosition+(HeightDuck/122*200), yPosition+(HeightDuck/373*149), HeightDuck/541*92, HeightDuck/601*107);
+fill(0, 0, 0);
+ellipse(xPosition+(HeightDuck/122*200), yPosition+(HeightDuck/370*149), HeightDuck/785*92, HeightDuck/876*107);
+noStroke();
+fill(255, 132, 0);
+rect(xPosition+(HeightDuck/110*200), yPosition+(HeightDuck/303*149), HeightDuck/341*92, HeightDuck/852*107);
+
+//Duck Body 
+noStroke();
+fill(255, 234, 0);
+ellipse(xPosition+(HeightDuck/150*200), yPosition+(HeightDuck/153*149), HeightDuck/89*92, HeightDuck/150*107);
+stroke(0, 0, 0);
+ellipse(xPosition+(HeightDuck/142*193), yPosition+(HeightDuck/160*149), HeightDuck/145*95, HeightDuck/297*107);
+};
+var y = 150;
+var loss = 0;
+var draw_tube = function(tube2){
+    fill(51,255,0);
+    if (tube2[1]===0){
+    rect(tube2[0],50,tube2[2],tube2[3]);
+    }else{
+        rect(tube2[0],350-tube2[3], tube2[2], tube2[3]);
+    }
+};
+var movetubes = function(tubes2){
+    var i = 0;
+while(i<tubes2.length){
+    tubes2[i][0]-=speed;
+    i++;
+}
+return tubes2;
+};
+var draw_tubes = function(tubes2){
+    var i= 0;
+    while(i<tubes2.length){
+        draw_tube(tubes2[i]);
+        i++;
+    }
+};
+var randomtime = floor(random(875,3000));
+draw = function() {
+if(loss ===0){
+if (millis()>last_tube+begin_time){
+var tube = [400,0,30,floor(random(score+30,score+70))];
+tubes.push(tube);
+last_tube = millis();
+randomtime = floor(random(875,3000));
+}
+background(11, 216, 219);
+fill(140,113, 23);
+rect(0,0,400,50);
+rect(0,350,400,50);
+fill(5, 5, 5);
+text("Score: "+floor(score),175,20);
+FlappyDuck(128,151,52);
+mousePressed = function(){
+y-=60;
+};
+y+=2.5;
+}else{
+
+    }
+};
+
+//Creations for buttons
 var stillPlaying = true;
 var Button = function(config) {
     this.x = config.x || 0;
@@ -19,10 +103,11 @@ Button.prototype.draw = function() {
 //Button's pressing works
 Button.prototype.isMouseInside = function() {
     return mouseX > this.x &&
-           mouseX < (this.x + this.width) &&
-           mouseY > this.y &&
-           mouseY < (this.y + this.height);
+          mouseX < (this.x + this.width) &&
+          mouseY > this.y &&
+          mouseY < (this.y + this.height);
 };
+
 
 // makes start button
 var button1 = new Button({
@@ -32,9 +117,9 @@ var button1 = new Button({
 });
 
 //Jonathan's Bitmoji
-var yPos = 100;//yPos+ or yPos-
-var xPos = 100;//xPos+ or XPos-
-var Heightbitmoji = 150;// (Heightbitmoji/150* )
+ var yPos = 100;//yPos+ or yPos-
+ var xPos = 100;//xPos+ or XPos-
+ var Heightbitmoji = 150;// (Heightbitmoji/150* )
 
 var drawBitmoji = function(xPos, yPos, Heightbitmoji)
 {
@@ -166,7 +251,6 @@ var drawBit = function(x,y,bitH){
     drawHead(x,y,bitH);
      drawBody(x,y,bitH);
 };
-// Main menu
 var GameMenu = function() {
     stillPlaying = false;
     background(197, 212, 36);
