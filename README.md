@@ -2,7 +2,7 @@ var stillPlaying = true;
 var cScene = 1; 
 var temp = 0;
 var score = 0;
-var Beaver = function(x, y) {
+var Duck = function(x, y) {
     this.x = x;
     this.y = y;
     this.img = getImage("space/rocketship");
@@ -81,7 +81,7 @@ fill(0, 0, 0);
 ellipse(xPosition+(HeightDuck/122*200), yPosition+(HeightDuck/370*149), HeightDuck/785*92, HeightDuck/876*107);
 noStroke();
 fill(255, 132, 0);
-rect(xPosition+(HeightDuck/110*200), yPosition+(HeightDuck/303*149), HeightDuck/341*92, HeightDuck/852*107);
+rect(xPosition+(HeightDuck/109*200), yPosition+(HeightDuck/303*149), HeightDuck/341*92, HeightDuck/852*107);
 
 //Duck Body 
 noStroke();
@@ -188,18 +188,18 @@ var startBtn = new Button
     }
     });
 
-Beaver.prototype.draw = function() {
+Duck.prototype.draw = function() {
     fill(255, 0, 0);
     this.y = constrain(this.y,0, height-40);
-    image(this.img, this.x, this.y, 60, 60);
+    FlappyDuck(this.x, this.y, 29);
 };
 
-Beaver.prototype.hop = function() {
+Duck.prototype.hop = function() {
     this.img = getImage("space/rocketship");
     this.y -= 5;
 };
 
-Beaver.prototype.fall = function() {
+Duck.prototype.fall = function() {
     this.img = getImage("space/rocketship");
     this.y += 5;
 };
@@ -218,7 +218,7 @@ Stick.prototype.draw = function() {
         else {rect(this.x, this.height+200, 5, this.height+100);}
 };
 
-var beaver = new Beaver(205, 55);
+var duck = new Duck(205, 55);
 
 var sticks = [];
 for (var i = 0; i < 40; i++) { 
@@ -234,11 +234,11 @@ for (var i = 0; i < 40; i++) {
 var grassXs = [];
 for (var i = 0; i < 25; i++) {grassXs.push(i*20);}
 
-Beaver.prototype.checkForStickPass = function(stick) {
+Duck.prototype.checkForStickPass = function(stick) {
     if(stick.x === 194){this.sticks++;score = this.sticks/2;}
 };
 
-Beaver.prototype.checkForStickGrab = function(stick) {
+Duck.prototype.checkForStickGrab = function(stick) {
     if ((stick.x >= this.x && stick.x <= (this.x + 42))) {
         
     if(stick.isTop && this.y > 0 && this.y < (stick.height/2)-10) {
@@ -257,7 +257,7 @@ cScene = 2;}
 
  var game = function() 
 {
- background(255, 0, 43);
+ background(0, 200, 255);
     fill(102, 60, 33);
     rectMode(CORNER);
     rect(0, height*0.90, width, height*0.10);
@@ -271,8 +271,8 @@ cScene = 2;}
     for (var i = 0; i < sticks.length; i++) {
        
         sticks[i].draw();
-        beaver.checkForStickGrab(sticks[i]);
-        beaver.checkForStickPass(sticks[i]);
+        duck.checkForStickGrab(sticks[i]);
+        duck.checkForStickPass(sticks[i]);
        if(sticks[10].x < 0){ // how fast he goes at 10
             sticks[i].x -=2;}
             else if (sticks[15].x < 0) { // how fast he goes at 15
@@ -283,14 +283,14 @@ cScene = 2;}
     
     textSize(20);
     text("Score = " + score, 18, 35);
-    if (beaver.sticks/sticks.length >= 0.95) {
+    if (duck.sticks/sticks.length >= 0.95) {
         textSize(36);
         text("Winner!", 105, 205);}
     if (keyIsPressed && keyCode === 0) {
-        beaver.hop();}
+        duck.hop();}
         else {
-        beaver.fall();}
-    beaver.draw();};
+        duck.fall();}
+    duck.draw();};
 var GameMenu = function() {
     stillPlaying = false;
     background(197, 212, 36);
@@ -347,6 +347,3 @@ if (cScene === 1)
 
 
     };
-    
-    
-
