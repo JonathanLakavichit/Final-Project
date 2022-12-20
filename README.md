@@ -97,9 +97,9 @@ var drawHead = function(x,y,bitH){
 noStroke();
 fill(241, 194, 125); // skintone fill
 ellipse(x + bitH/100,y + bitH/100,bitH/100*79,bitH/100*100); //head
-fill(197, 212, 36); // white fill
+fill(23, 230, 23); // white fill
 arc(x- bitH/100*42,y+bitH/100*37,bitH/100*36,bitH/100*60,0,360); //left chisel
-fill(197, 212, 36); // white fill
+fill(23, 230, 23); // white fill
 arc(x+bitH/100*40,y+bitH/100*37,bitH/100*36,bitH/100*60,0,360); //right chisel
 fill(36,28,17); //brown hair fill
 quad(x-bitH/100*44,y+bitH/100*6, x-bitH/100*29, y-bitH/100*35, x-bitH/100*10, y-bitH/100*50, x-bitH/100*24, y-bitH/100*28); // leftside hair
@@ -133,7 +133,7 @@ stroke(20, 17, 17);
 arc(x+bitH/100*49,y+bitH/100*69,bitH/100*28,bitH/100*43,0,374); //left chisel
 arc(x-bitH/100*45,y+bitH/100*69,bitH/100*28,bitH/100*43,0,374); //right chisel
 noStroke();
-fill(197, 212, 36);
+fill(23, 230, 23);
 rect(x+bitH/100*37,y+bitH/100*91,bitH/100*48,bitH/100*75);
 rect(x-bitH/100*80,y+bitH/100*91,bitH/100*48,bitH/100*75);
 fill(20, 18, 18);
