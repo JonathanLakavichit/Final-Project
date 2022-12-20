@@ -1,3 +1,4 @@
+// Variables for Flappy Duck Game
 var stillPlaying = true;
 var cScene = 1; 
 var temp = 0;
@@ -65,7 +66,6 @@ arc( xPos+(Heightbitmoji/150*240), yPos+(Heightbitmoji/150*269), Heightbitmoji/1
 var xPosition = 100;
 var yPosition = 100;
 var HeightDuck = 150;
-
 var FlappyDuck = function(xPosition, yPosition, HeightDuck){
     
 //Duck Head   
@@ -154,7 +154,7 @@ var Button = function(config) {
     this.onClick = config.onClick || function() {};
     this.text = config.text || 19;
 };
-
+//Start Button For Begin Of Game
 Button.prototype.draw = function() {
     noStroke();
     fill(255, 0, 0);
@@ -164,20 +164,20 @@ Button.prototype.draw = function() {
     textAlign(LEFT,TOP);
     text(this.label, this.x+10, this.y+this.height/4);
 };
-
+//Function To Make Sure Mouse In Button
 Button.prototype.isMouseInside = function() {
     return mouseX > this.x &&
            mouseX < (this.x + this.width) &&
            mouseY > this.y &&
            mouseY < (this.y + this.height);
 };
-
+// Click Function
 Button.prototype.handleMouseClick = function() {
     if (this.isMouseInside()) {
         this.onClick();
     }
 };
-
+//Start Button Design and Funct..
 var startBtn = new Button 
     ({
     x: 120,
@@ -187,57 +187,64 @@ var startBtn = new Button
         cScene = 0;
     }
     });
-
+    
+//Bringing Duck Into Scene
 Duck.prototype.draw = function() {
     fill(255, 0, 0);
     this.y = constrain(this.y,0, height-40);
-    FlappyDuck(this.x, this.y, 29);
+    FlappyDuck(this.x, this.y, 16);
 };
 
+// Making Duck Hop
 Duck.prototype.hop = function() {
     this.img = getImage("space/rocketship");
     this.y -= 5;
 };
 
+//Making Duck Fall
 Duck.prototype.fall = function() {
     this.img = getImage("space/rocketship");
     this.y += 5;
 };
 
+//Pipe Function
 var Stick = function(x, height, isTop) {
     this.x = x;
     this.height = height;
     this.isTop = isTop;
+    this.width = width;
 };
-
+//Bringing Pipe Into Scene
 Stick.prototype.draw = function() {
     fill(62, 161, 0);
     rectMode(CENTER);
     if(this.isTop) {
-        rect(this.x, this.height-this.height, 5, this.height); }
-        else {rect(this.x, this.height+200, 5, this.height+100);}
+        rect(this.x, this.height-this.height, 24, this.height); }
+        else {rect(this.x, this.height+200, 24, this.height+100);}
 };
 
+//Another variable For Duck
 var duck = new Duck(205, 55);
 
+//Creation of random size pipes
 var sticks = [];
 for (var i = 0; i < 40; i++) { 
     if(sticks[i] <=40){
         this.sticks++;
     }
-    var pipeHeight= random(100,430);
+    var pipeHeight= random(100,465);
     temp = pipeHeight;
     sticks.push(new Stick(i * 105 + 305, pipeHeight, true));
     sticks.push(new Stick(i * 110 + 290, pipeHeight, false));
 }
-
+// Grass At the Bottom
 var grassXs = [];
 for (var i = 0; i < 25; i++) {grassXs.push(i*20);}
-
+//Score For Flappy Duck
 Duck.prototype.checkForStickPass = function(stick) {
     if(stick.x === 194){this.sticks++;score = this.sticks/2;}
 };
-
+//More Pipe function
 Duck.prototype.checkForStickGrab = function(stick) {
     if ((stick.x >= this.x && stick.x <= (this.x + 42))) {
         
@@ -254,7 +261,7 @@ cScene = 2;}
 };
 
 
-
+// Variable for the game
  var game = function() 
 {
  background(0, 200, 255);
@@ -262,6 +269,7 @@ cScene = 2;}
     rectMode(CORNER);
     rect(0, height*0.90, width, height*0.10);
     
+    //Image for the grass
     for (var i = 0; i < grassXs.length; i++) {
         image(getImage("cute/GrassBlock"), grassXs[i], height*0.85, 25, 25);
         grassXs[i] -= 2;
@@ -270,6 +278,7 @@ cScene = 2;}
     
     for (var i = 0; i < sticks.length; i++) {
        
+       //Drawing the pipes and speed of moving pipes
         sticks[i].draw();
         duck.checkForStickGrab(sticks[i]);
         duck.checkForStickPass(sticks[i]);
@@ -280,7 +289,7 @@ cScene = 2;}
             else {
             sticks[i].x -= 1;} // how fast he goes before 10
     }
-    
+    //When game is beaten winner
     textSize(20);
     text("Score = " + score, 18, 35);
     if (duck.sticks/sticks.length >= 0.95) {
@@ -291,10 +300,12 @@ cScene = 2;}
         else {
         duck.fall();}
     duck.draw();};
+    
+// Menu For Our Game
 var GameMenu = function() {
     stillPlaying = false;
-    background(197, 212, 36);
-    fill(247, 30, 48);
+    background(23, 230, 23);
+    fill(194, 104, 25);
     textSize(28);
     text("Flappy Duck",111,50);//text
     textSize(20);
@@ -306,6 +317,7 @@ var GameMenu = function() {
     startBtn.draw();
     
 };
+//Splash Screen 
 var splashScreen = function(){
  startBtn.draw();
  GameMenu();
@@ -315,6 +327,7 @@ var splashScreen = function(){
 if(cScene === 1)
 {splashScreen();}
 
+//Game over Function 
 var gameOver = function(){
         background(255, 0, 0);
         fill(0, 0, 0);
